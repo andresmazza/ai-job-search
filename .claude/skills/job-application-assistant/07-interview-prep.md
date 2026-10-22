@@ -14,30 +14,49 @@ Keep answers to 1-2 minutes. Be specific. End with what you learned or would do 
 
 ## Ready-Made STAR Examples
 
-<!-- These are populated by /setup from your actual experience. Below are templates showing the format. -->
+None completed yet. Fill in the S/T/A/R details for the candidates below, then move each finished one here.
 
-### 1. [PROJECT_NAME] ([SKILL_DEMONSTRATED])
-**S:** [CONTEXT - what was happening, what was the problem]
-**T:** [YOUR RESPONSIBILITY - what you specifically needed to do]
-**A:** [WHAT YOU DID - specific actions, tools, methods]
-**R:** [OUTCOME - measurable results, adoption, impact]
-**Use for:** "[QUESTION_TYPE_1]", "[QUESTION_TYPE_2]"
+## STAR Candidates (Complete Manually)
 
-### 2. [PROJECT_NAME] ([SKILL_DEMONSTRATED])
-**S:** [CONTEXT]
-**T:** [YOUR RESPONSIBILITY]
-**A:** [WHAT YOU DID]
-**R:** [OUTCOME]
-**Use for:** "[QUESTION_TYPE_1]", "[QUESTION_TYPE_2]"
+### AI-assisted development at Sidom
+**Source:** CV - Senior Full Stack Engineer, Sidom (2025-2026)
+**What happened:** Brought multi-agent workflows and custom agent skills into the team's process, cutting recurring critical bugs by 30% and meeting a 65% faster delivery goal.
+**Why it matters:** "Tell me about a process you improved", "How do you use AI tools?", "Driving change in a team"
+**S/T/A/R stub:**
+- Situation:
+- Task:
+- Action:
+- Result:
 
-### 3. [PROJECT_NAME] ([SKILL_DEMONSTRATED])
-**S:** [CONTEXT]
-**T:** [YOUR RESPONSIBILITY]
-**A:** [WHAT YOU DID]
-**R:** [OUTCOME]
-**Use for:** "[QUESTION_TYPE_1]", "[QUESTION_TYPE_2]"
+### Dockerized dev environment at Sidom
+**Source:** CV - Senior Full Stack Engineer, Sidom
+**What happened:** Containerized the dev environment, cutting setup from 2 days to 2 hours.
+**Why it matters:** "Developer experience", "Taking initiative", "Measurable impact"
+**S/T/A/R stub:**
+- Situation:
+- Task:
+- Action:
+- Result:
 
-<!-- Add more STAR examples as needed. Aim for 4-6 covering different competencies. -->
+### Monolith-to-microservices migration at Laboratorios Bagó
+**Source:** CV - Senior Full Stack Engineer, Bagó (2018-2021)
+**What happened:** Contributed to the migration (Java, PHP, Angular on Docker/Kubernetes), built GitLab CI/CD pipelines, mentored developers, joined architecture decisions.
+**Why it matters:** "Large technical project", "Architecture trade-offs", "Mentoring"
+**S/T/A/R stub:**
+- Situation:
+- Task:
+- Action:
+- Result:
+
+### Legacy web services to Laravel REST APIs at Sondeos
+**Source:** CV - Senior Backend Engineer, Sondeos (2016-2018)
+**What happened:** Led the move from legacy web services to Laravel REST APIs, foundation of the DirecTV field platform.
+**Why it matters:** "Leading a technical initiative", "Dealing with legacy code", "API design"
+**S/T/A/R stub:**
+- Situation:
+- Task:
+- Action:
+- Result:
 
 ## Common Tough Questions
 
@@ -45,13 +64,13 @@ Keep answers to 1-2 minutes. Be specific. End with what you learned or would do 
 > [PREPARE YOUR ANSWER - be honest, forward-looking, no negativity about former employer]
 
 ### "You don't have [specific skill/experience]."
-> [PREPARE YOUR ANSWER - acknowledge the gap, bridge to adjacent experience, show willingness to learn]
+> Draft: acknowledge the specific gap, then bridge to 15+ years of picking up new stacks quickly (PHP to Node.js, Java Spring Boot, Angular, Kubernetes across roles) and to AI-assisted development with Claude Code, which shortens ramp-up on unfamiliar code. Never claim Python beyond one short project.
 
 ### "Where do you see yourself in 5 years?"
-> [PREPARE YOUR ANSWER - show ambition aligned with the role's growth path]
+> Draft: growing into a Tech Lead role (architecture decisions, mentoring, as at Bagó and Sondeos) and deepening application security, building on the 2026 Google Cybersecurity certificate.
 
 ### "What's your biggest weakness?"
-> [PREPARE YOUR ANSWER - genuine weakness with concrete mitigation strategy]
+> Draft: English is at B1 level. Mitigation: actively improving, works daily with English documentation and tooling, and prepares written summaries before key meetings.
 
 ### "Why this company specifically?"
 > Customize per company. Must reference: specific projects, company values, market position, or team structure. Never give a generic answer.

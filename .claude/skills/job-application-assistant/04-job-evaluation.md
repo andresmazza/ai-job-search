@@ -60,9 +60,9 @@ How well do the required/preferred skills align with the candidate's capabilitie
 | 40-59 | Partial match, significant upskilling needed |
 | 0-39 | Fundamental mismatch |
 
-**Strong match areas:** [YOUR_PRIMARY_SKILLS]
-**Moderate match areas:** [YOUR_SECONDARY_SKILLS]
-**Weak match areas:** [SKILLS_YOU_LACK]
+**Strong match areas:** PHP/Laravel, React, JavaScript, RESTful APIs, MySQL/PostgreSQL, Redis, Docker, AWS (EC2, S3, RDS), CI/CD (GitLab, Jenkins), AI-assisted development (Claude Code, Copilot, Cursor), Moodle/LMS
+**Moderate match areas:** Node.js/Express, Symfony, Angular, Kubernetes, microservices architecture, Java/Spring Boot (earlier), TypeScript (earlier), Magento
+**Weak match areas:** Python (one short project only), Go, Rust, .NET, ML/data engineering, native mobile, Vue/Next.js-specific roles, roles requiring fluent (C1+) English
 
 ### 2. Experience Match (0-100)
 Does work history align with what they're looking for? Match on the function and nature of the work performed, not the literal job title - a "Data Consultant" and a "Data Scientist" role can be functionally identical.
@@ -74,9 +74,9 @@ Does work history align with what they're looking for? Match on the function and
 | 40-59 | Adjacent experience, would need to make the case |
 | 0-39 | Unrelated experience |
 
-**Strong:** [YOUR_DIRECT_EXPERIENCE_DOMAINS]
-**Moderate:** [YOUR_ADJACENT_EXPERIENCE]
-**Entry-level:** [ROLES_WITH_LIMITED_EXPERIENCE]
+**Strong:** Senior Full Stack / Backend engineering on PHP + React web platforms (15+ years); REST API design; legacy-to-modern migrations; B2B SaaS, e-learning, healthcare, classifieds
+**Moderate:** Tech lead / mentoring responsibilities, DevOps and platform work (Docker, Kubernetes, CI/CD), AI-assisted development enablement
+**Entry-level:** Cybersecurity (certifications only, 2026), formal people management, data/ML engineering
 
 ### 3. Behavioral/Culture Fit (0-100)
 Does the role and company culture match the behavioral profile?
@@ -107,19 +107,19 @@ Does this role advance career goals and contain tasks that energize?
 | 0-39 | Dead end or backwards step |
 
 **Career goals:**
-- [YOUR_CAREER_GOAL_1]
-- [YOUR_CAREER_GOAL_2]
-- [YOUR_CAREER_GOAL_3]
+- Senior Full Stack or Backend Engineer role (PHP/Laravel, React) at a technology company
+- Grow into Tech Lead: architecture decisions, mentoring, raising engineering standards
+- Build toward application security (AppSec / security-minded backend), backed by 2026 cybersecurity certifications
 
 **Motivation filter:** Evaluate not just whether you *can* do the tasks, but whether the tasks will *energize* you. Consider:
-- Tasks that energize: [YOUR_ENERGIZING_TASKS]
-- Tasks that drain: [YOUR_DRAINING_TASKS]
+- Tasks that energize *(inferred from CV, candidate unsure - revisit)*: modernizing legacy systems, improving developer workflows (AI-assisted development with Claude Code, Docker, CI/CD), API design, mentoring
+- Tasks that drain: not yet defined by the candidate
 - Non-task factors: leadership style, department culture, company values, degree of autonomy
 
 **Life situation alignment:** Consider personal constraints:
-- **Security**: [YOUR_FINANCIAL_SITUATION_CONTEXT]
-- **Flexibility**: [YOUR_SCHEDULE_CONSTRAINTS]
-- **Professional development**: [YOUR_GROWTH_PRIORITIES]
+- **Security**: actively job searching, available immediately. Salary baseline ~USD 3,000/month for Argentina/LatAm, ~USD 4,000/month for US roles; flag postings clearly below these.
+- **Flexibility**: remote (US/Europe/LatAm, full US Eastern overlap) or hybrid in Buenos Aires; no relocation.
+- **Professional development**: tech lead responsibilities, application security, English improvement.
 
 ### 6. Salary Benchmark (Optional)
 

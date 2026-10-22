@@ -1,10 +1,8 @@
-# Job Application Assistant for [YOUR_NAME]
+# Job Application Assistant for Andres Mazza
 
-<!-- SETUP: This file is populated by running /setup -->
-<!-- After running /setup, all [PLACEHOLDER] tokens will be replaced with your actual information -->
 
 ## Role
-This repo is a job application workspace. Claude acts as a career advisor and application assistant for [YOUR_NAME], helping with:
+This repo is a job application workspace. Claude acts as a career advisor and application assistant for Andres Mazza, helping with:
 1. **Job fit evaluation** - Assess job postings against your profile (skills, experience, behavioral traits)
 2. **CV tailoring** - Adapt existing CV templates (LaTeX/moderncv) to target specific roles
 3. **Cover letter writing** - Draft targeted cover letters using existing templates (LaTeX)
@@ -13,79 +11,79 @@ This repo is a job application workspace. Claude acts as a career advisor and ap
 
 ## Candidate Profile
 
-<!-- This section is auto-populated by /setup. You can also fill it in manually. -->
-
 ### Identity
-- **Name:** [YOUR_NAME]
-- **Location:** [YOUR_CITY], [YOUR_COUNTRY] ([YOUR_COMMUTE_CONSTRAINTS])
+- **Name:** Andres Mazza
+- **Location:** Buenos Aires, Argentina (UTC-3). No relocation. Remote (US / Europe / LatAm companies, full overlap with US Eastern hours) or hybrid in Buenos Aires.
+- **Contact:** +54 9 11 6460-3697 · andres.mazza@gmail.com · linkedin.com/in/andresmazza (no GitHub)
 - **Languages:**
   | Language | Level |
   |----------|-------|
-  | [LANGUAGE] | [LEVEL] |
-  <!-- Every language you work in professionally, with your level (CEFR, "native," "professional
-  working proficiency," whatever your CV/LinkedIn use - no need to force it into one scale). An
-  undeclared language is a hard deal-breaker if a posting requires it; a declared language at a
-  lower level than a posting wants is flagged for your own judgment, not auto-rejected. See
-  04-job-evaluation.md's Language Gate. -->
-- **CV language:** [YOUR_CV_LANGUAGE] <!-- English unless your market expects otherwise; /setup asks -->
+  | Spanish | Native |
+  | English | Intermediate (B1), actively improving |
+  | Portuguese | Basic |
+- **CV language:** English
 
-- **Status:** [YOUR_EMPLOYMENT_STATUS]
-- **LinkedIn headline:** "[YOUR_LINKEDIN_HEADLINE]"
+- **Status:** Actively job searching (last role at Sidom ended Sep 2026); available immediately
+- **LinkedIn headline:** "Senior Full Stack Engineer · PHP/Laravel · React · Docker"
 
 ### Education
-<!-- List your degrees, most recent first -->
-- **[DEGREE_LEVEL] in [FIELD]** ([YEAR_START]-[YEAR_END]) - [INSTITUTION]
-  - Thesis: "[THESIS_TITLE]"
-  - Topics: [KEY_TOPICS]
+- **Electronic Engineering coursework (3 years completed, no degree)** - Universidad Tecnológica Nacional (UTN), Argentina
 
 ### Professional Experience
-<!-- List your roles, most recent first -->
-- **[JOB_TITLE]** ([START_DATE] - [END_DATE]) - **[COMPANY]** ([LOCATION])
-  - [KEY_RESPONSIBILITY_1]
-  - [KEY_RESPONSIBILITY_2]
-  - [KEY_ACHIEVEMENT]
+- **Senior Full Stack Engineer** (Jan 2025 - Sep 2026) - **Sidom (Uniendo Mercados S.A.)** (Buenos Aires)
+  - Brought AI-assisted development (multi-agent workflows, custom agent skills) into the team's process: -30% recurring critical bugs, met a 65% faster feature delivery goal
+  - Shipped React and PHP features for a B2B commerce suite serving 500+ customers
+  - Containerized the dev environment with Docker: setup from 2 days to 2 hours
+- **Backend Engineer (Contract)** (Apr 2024 - Jan 2025) - **IMed Imágenes Médicas** (Remote)
+  - Laravel REST APIs on AWS integrating PACS, billing, scheduling; Redis queues for medical report delivery
+- **Senior Full Stack Engineer** (Nov 2021 - Feb 2024) - **Aprende Institute** (Remote)
+  - Custom Moodle plugins/themes in PHP and React for 300,000+ students; LMS integrations and metrics system
+- **Senior Full Stack Engineer** (Aug 2018 - Oct 2021) - **Laboratorios Bagó** (Buenos Aires)
+  - Contributed to monolith-to-microservices migration (Java, PHP, Angular, Docker, Kubernetes); GitLab CI/CD; mentoring, code reviews, architecture decisions
+- **Senior Backend Engineer** (Dec 2016 - Aug 2018) - **Sondeos** (Buenos Aires)
+  - Led move from legacy web services to Laravel REST APIs (DirecTV platform); Node.js/Express and Spring Boot for Telefónica; Jenkins; mentoring
+- **Full Stack Engineer (Freelance)** (Mar 2015 - Nov 2016) - **e-binaria** (Buenos Aires)
+  - Mercado Libre integration for Lectorati; Magento, Node.js, Symfony, Android
+- **Backend Engineer** (Apr 2011 - Feb 2015) - **OLX** (Buenos Aires)
+  - SEO features; ONEWEB classifieds platform rolled out in 54+ countries (Node.js, Backbone.js)
+- **Earlier (2003 - 2011):** Thales Group (Backend Developer), Azultel Network, Laboratorio Dr. Lazar
 
 ### Technical Skills
-- **Primary:** [YOUR_PRIMARY_SKILLS]
-- **Secondary:** [YOUR_SECONDARY_SKILLS]
-- **Domain:** [YOUR_DOMAIN_EXPERTISE]
-- **Software:** [YOUR_TOOLS_AND_SOFTWARE]
+- **Primary:** PHP/Laravel, React, JavaScript, RESTful APIs, MySQL/PostgreSQL, Redis, Docker, AWS (EC2, S3, RDS)
+- **Secondary:** Node.js/Express, Symfony, Angular, Kubernetes, GitLab CI/CD, Jenkins, Linux, Bash; earlier Java/Spring Boot, TypeScript
+- **Domain:** B2B commerce/SaaS, e-learning (Moodle/LMS), healthcare imaging, pharma, telecom, online classifieds/SEO
+- **Software:** Claude Code, GitHub Copilot, Cursor (multi-agent workflows, custom Agent Skills); PHPUnit, Jest
+- **Not a skill:** Python (one short project only, never present it as a skill)
 
 ### Certifications
-<!-- List relevant certifications with dates -->
-- **[CERTIFICATION_NAME]** - [HOURS]h - completed [DATE]
+- **Google Cybersecurity Professional Certificate** - Google - completed 2026
+- **Introduction to Ethical Hacking Principles** - SkillUp - completed 2026
+- **Certified Scrum Developer** - Kleer
 
 ### Publications
-<!-- List peer-reviewed publications, if any -->
-- [AUTHOR_LIST] ([YEAR]). [TITLE]. [JOURNAL].
+- None.
 
 ### Awards
-<!-- List relevant awards, hackathons, competitions -->
-- [AWARD_NAME] - [EVENT] ([YEAR])
+- None recorded.
 
 ### Behavioral Profile
-<!-- Your behavioral assessment results (PI, DISC, Myers-Briggs, or self-assessment) -->
-- **[TRAIT_1]** - [DESCRIPTION]
-- **[TRAIT_2]** - [DESCRIPTION]
-- **Strengths:** [YOUR_STRENGTHS]
-- **Growth areas:** [YOUR_GROWTH_AREAS]
-- **Thrives in:** [YOUR_IDEAL_ENVIRONMENT]
+- No formal assessment. Inferred from CV (review before relying on it):
+- **Process improver** - introduces tools and workflows that raise team productivity (AI-assisted development, Docker, CI/CD)
+- **Mentor** - code reviews and mentoring across several roles
+- **Strengths:** legacy modernization, API design, developer experience, AI-assisted development
+- **Growth areas:** English (B1, improving); no completed degree (15+ years of production work instead)
+- **Thrives in:** technology companies, remote or hybrid, teams open to better engineering practices
 
 ### What Excites You
-<!-- What motivates you professionally -->
-- [PASSION_1]
-- [PASSION_2]
+- Not yet defined by the candidate (inferred: modernizing legacy systems, improving developer workflows, mentoring)
 
 ### Target Sectors
-<!-- Industries and companies you're targeting -->
-- [SECTOR_1]: [EXAMPLE_COMPANIES]
-- [SECTOR_2]: [EXAMPLE_COMPANIES]
+- Technology companies (product, SaaS, tech services): remote US / Europe / LatAm, or Buenos Aires hybrid
+- Target roles: Senior Full Stack Engineer, Senior Backend Engineer, Tech Lead, Security (AppSec / security-minded engineering, entry-level fit)
 
 ### Deal-breakers
-<!-- Hard constraints on job search. Language requirements are handled separately and
-automatically from your Languages table above - don't duplicate them here. -->
-- [DEALBREAKER_1]
-- [DEALBREAKER_2]
+- Relocation away from Buenos Aires; on-site roles outside the Buenos Aires metro area
+- Salary clearly below baseline: ~USD 3,000/month (Argentina / LatAm), ~USD 4,000/month (US)
 
 ## Repo Structure
 - `cv/` - LaTeX CV variants (moderncv template, banking style)

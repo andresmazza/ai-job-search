@@ -1,8 +1,7 @@
-%% Example CV - [YOUR_NAME]
+%% Master CV - Andres Mazza
 %% Comprehensive overview of all competencies, experience, and achievements.
 %% Use as a master reference when tailoring role-specific CVs.
 %%
-%% SETUP: Run /setup to populate this with your actual information.
 %% Compile with: lualatex main_example.tex
 %% (pdflatex often fails on modern MiKTeX with fontawesome5 font-expansion errors.)
 
@@ -40,7 +39,7 @@
     linkcolor=blue,
     filecolor=magenta,
     urlcolor=blue,
-    pdftitle={[YOUR_NAME] - CV},
+    pdftitle={Andres Mazza - CV},
     % Keep pdfpagemode=UseNone: this block runs after moderncv's own
     % \AtEndPreamble (moderncv.cls sets pdfpagemode there), so a FullScreen
     % value here would win and open every CV in fullscreen presentation mode.
@@ -48,15 +47,14 @@
 }}
 \usepackage[scale=0.80]{geometry}
 \usepackage{import}
+\usepackage{needspace}
 
 % personal data
-\name{[First]}{[Last]}
-% If you have no address to list, DELETE this whole line. \address{}{}{} fails
-% with "There's no line here to end" on every moderncv version.
-\address{[Your Address, City, Country]}{}{}
-\phone[mobile]{[+XX XXXXXXXXXX]}
-\email{[your.email@example.com]}
-\extrainfo{\href{[https://linkedin.com/in/your-profile]}{LinkedIn}, \href{[https://github.com/your-username]}{GitHub}}
+\name{Andres}{Mazza}
+\address{Buenos Aires, Argentina (UTC-3)}{}{}
+\phone[mobile]{+54 9 11 6460-3697}
+\email{andres.mazza@gmail.com}
+\extrainfo{\href{https://linkedin.com/in/andresmazza}{linkedin.com/in/andresmazza}}
 
 \begin{document}
 
@@ -67,7 +65,7 @@
 % ============================================================
 
 \vspace{6pt}
-\small{[Write a 3-5 line profile statement tailored to the role you're applying for. Focus on what makes you uniquely qualified. Example: "Data scientist with a PhD in [field] and X years of industry experience. Combines deep domain expertise in [domain] with strong applied machine learning and Python development skills. Experienced in developing end-to-end ML pipelines, from data ingestion to stakeholder-facing dashboards."]}
+\small{Senior Full Stack Engineer with 15+ years building web platforms for companies such as OLX, Laboratorios Bag\'o, and Aprende Institute. Strong in PHP/Laravel and React, with hands-on Docker and AWS, plus earlier Node.js and Java. Led a move from legacy web services to REST APIs and contributed to a monolith-to-microservices migration on Kubernetes; experienced mentoring developers and running code reviews. Most recently cut recurring critical bugs by 30\% with AI-assisted development (Claude Code, multi-agent workflows) adopted across the team. Open to remote work with full overlap with US Eastern hours.}
 
 % ============================================================
 %     CORE COMPETENCIES
@@ -76,17 +74,12 @@
 \section{Core Competencies}
 \vspace{1pt}
 \begin{itemize}
-
-\item \textbf{[Skill Category 1]}: [Specific skills, frameworks, tools. Be concrete.]
-
-\item \textbf{[Skill Category 2]}: [Specific skills, frameworks, tools.]
-
-\item \textbf{[Skill Category 3]}: [Specific skills, frameworks, tools.]
-
-\item \textbf{[Skill Category 4]}: [Domain expertise, methods, approaches.]
-
-\item \textbf{[Skill Category 5]}: [Tools, platforms, software.]
-
+\item \textbf{Languages}: PHP, JavaScript, SQL, Bash; earlier: Java, TypeScript
+\item \textbf{Frameworks}: Laravel, React, Symfony, Angular, Node.js/Express, Spring Boot, Moodle, Magento
+\item \textbf{Cloud \& DevOps}: AWS (EC2, S3, RDS), Docker, Kubernetes, GitLab CI/CD, Jenkins, Linux
+\item \textbf{Databases}: MySQL, PostgreSQL, Redis
+\item \textbf{Architecture \& Practices}: Microservices, RESTful APIs, SOLID, Clean Code, Agile/Scrum, unit testing (PHPUnit, Jest), code reviews, mentoring
+\item \textbf{AI Tooling}: Claude Code, GitHub Copilot, Cursor; multi-agent workflows, custom Agent Skills
 \end{itemize}
 
 % ============================================================
@@ -97,54 +90,88 @@
 \vspace{3pt}
 \begin{itemize}
 
-% --- Most Recent Role ---
-\item{\cventry{[YYYY-Present]}{[Job Title]}{[Company]}{[City, Country]}{}{\vspace{1pt}
+\needspace{5\baselineskip}
+\item{\cventry{Jan 2025 -- Sep 2026}{Senior Full Stack Engineer}{Sidom (Uniendo Mercados S.A.)}{Buenos Aires, Argentina}{}{\vspace{1pt}
 \begin{itemize}
-    \item {[Achievement or responsibility 1 - be specific, use numbers where possible]}
-    \item {[Achievement or responsibility 2]}
-    \item {[Achievement or responsibility 3]}
-    \item {[Achievement or responsibility 4]}
+    \item {Brought AI-assisted development into the team's process, using Claude Code multi-agent workflows and custom agent skills for code generation, debugging, and root-cause analysis, reducing recurring critical bugs by 30\%.}
+    \item {Met a management-set goal of 65\% faster feature delivery with the same AI-assisted workflow.}
+    \item {Shipped features in React and PHP for a B2B commerce suite serving 500+ customers, covering the core application and the company website.}
+    \item {Containerized the dev environment with Docker, cutting developer environment setup from 2 days to 2 hours.}
 \end{itemize}}}
 
 \vspace{3pt}
-
-% --- Previous Role ---
-\item{\cventry{[YYYY-YYYY]}{[Job Title]}{[Company]}{[City, Country]}{}{\vspace{1pt}
+\needspace{5\baselineskip}
+\item{\cventry{Apr 2024 -- Jan 2025}{Backend Engineer (Contract)}{IMed Im\'agenes M\'edicas}{Remote}{}{\vspace{1pt}
 \begin{itemize}
-    \item {[Achievement or responsibility 1]}
-    \item {[Achievement or responsibility 2]}
-    \item {[Achievement or responsibility 3]}
+    \item {Designed and built RESTful APIs in Laravel on AWS connecting the front end with third-party services for PACS, billing, and scheduling.}
+    \item {Automated asynchronous processing and cloud delivery of medical reports with Redis queues, reducing API response times for large reports.}
 \end{itemize}}}
 
 \vspace{3pt}
-
-% --- Earlier Role ---
-\item{\cventry{[YYYY-YYYY]}{[Job Title]}{[Company]}{[City, Country]}{}{\vspace{1pt}
+\needspace{5\baselineskip}
+\item{\cventry{Nov 2021 -- Feb 2024}{Senior Full Stack Engineer}{Aprende Institute}{Remote}{}{\vspace{1pt}
 \begin{itemize}
-    \item {[Achievement or responsibility 1]}
-    \item {[Achievement or responsibility 2]}
+    \item {Created custom Moodle plugins and themes in PHP and React for an e-learning platform serving 300,000+ students across multiple countries.}
+    \item {Integrated third-party tools into the LMS for live class management and recorded-session playback, plus an analytics-style metrics system.}
 \end{itemize}}}
+
+\vspace{3pt}
+\needspace{5\baselineskip}
+\item{\cventry{Aug 2018 -- Oct 2021}{Senior Full Stack Engineer}{Laboratorios Bag\'o}{Buenos Aires, Argentina}{}{\vspace{1pt}
+\begin{itemize}
+    \item {Contributed to the migration of the core platform from a monolith to microservices (Java, PHP, Angular) on Docker and Kubernetes, used by hundreds of employees, medical sales reps, and pharmacies.}
+    \item {Implemented GitLab CI/CD pipelines to automate build, test, and deployment of the new microservices.}
+    \item {Mentored developers and ran code reviews during the migration, and took part in its architecture decisions.}
+\end{itemize}}}
+
+\vspace{3pt}
+\needspace{5\baselineskip}
+\item{\cventry{Dec 2016 -- Aug 2018}{Senior Backend Engineer}{Sondeos}{Buenos Aires, Argentina}{}{\vspace{1pt}
+\begin{itemize}
+    \item {Led the move from legacy web services to Laravel REST APIs, the foundation for the product management and activation platform built for DirecTV field technicians and sales reps.}
+    \item {Developed REST APIs in Node.js/Express and Java Spring Boot services for Telef\'onica de Argentina.}
+    \item {Set up Jenkins pipelines for automated testing and deployment, and mentored developers through code reviews.}
+\end{itemize}}}
+
+\vspace{3pt}
+\needspace{5\baselineskip}
+\item{\cventry{Mar 2015 -- Nov 2016}{Full Stack Engineer (Freelance)}{e-binaria}{Buenos Aires, Argentina}{}{\vspace{1pt}
+\begin{itemize}
+    \item {Integrated Mercado Libre's marketplace into Lectorati, a social network for readers.}
+    \item {Customized Magento modules and delivered projects in Node.js, Symfony, and Android.}
+\end{itemize}}}
+
+\vspace{3pt}
+\needspace{5\baselineskip}
+\item{\cventry{Apr 2011 -- Feb 2015}{Backend Engineer}{OLX}{Buenos Aires, Argentina}{}{\vspace{1pt}
+\begin{itemize}
+    \item {Delivered SEO features (dynamic sitemaps, extended titles) to grow organic search traffic for one of Latin America's largest classifieds sites.}
+    \item {Developed and maintained features for ONEWEB, OLX's new classifieds platform rolled out in 54+ countries (Node.js, Backbone.js).}
+\end{itemize}}}
+
+\vspace{3pt}
+\needspace{3\baselineskip}
+\item{\cventry{2003 -- 2011}{Earlier Experience}{}{}{}{\vspace{1pt}
+Thales Group (Backend Developer; clients: Terra Networks, BBVA Franc\'es, Pan American Energy) $\cdot$ Azultel Network $\cdot$ Laboratorio Dr. Lazar}}
 
 \end{itemize}
 
 % ============================================================
-%     EDUCATION
+%     EDUCATION & CERTIFICATIONS
 % ============================================================
 
 \section{Education}
 \vspace{1pt}
 \begin{itemize}
+\item{\cventry{}{Electronic Engineering coursework (3 years completed)}{Universidad Tecnol\'ogica Nacional (UTN)}{Argentina}{}{}}
+\end{itemize}
 
-\item{\cventry{[YYYY-YYYY]}{[Degree] in [Field]}{[Institution]}{[City, Country]}{}{\vspace{1pt}
-Thesis: ``[Thesis Title].'' [Brief description of research focus.]
-}}
-
-\vspace{3pt}
-
-\item{\cventry{[YYYY-YYYY]}{[Degree] in [Field]}{[Institution]}{[City, Country]}{}{\vspace{1pt}
-[Brief description or key topics.]
-}}
-
+\section{Certifications}
+\vspace{1pt}
+\begin{itemize}
+\item {Google Cybersecurity Professional Certificate -- Google (2026)}
+\item {Introduction to Ethical Hacking Principles -- SkillUp (2026)}
+\item {Certified Scrum Developer -- Kleer}
 \end{itemize}
 
 % ============================================================
@@ -154,27 +181,7 @@ Thesis: ``[Thesis Title].'' [Brief description of research focus.]
 \section{Languages}
 \vspace{1pt}
 \begin{itemize}
-\item {[Language 1] (native), [Language 2] (fluent), [Language 3] (intermediate).}
-\end{itemize}
-
-% ============================================================
-%     PUBLICATIONS (optional)
-% ============================================================
-
-\section{Publications}
-\vspace{1pt}
-\begin{itemize}
-\item {[Author(s)] ([Year]). [Title]. [Journal/Conference]. \href{[DOI_URL]}{DOI link}}
-\end{itemize}
-
-% ============================================================
-%     HONORS AND AWARDS (optional)
-% ============================================================
-
-\section{Honors and Awards}
-\vspace{1pt}
-\begin{itemize}
-\item{\textbf{[Award Name]} -- [Event/Organization] ([Year]).}
+\item {Spanish (native), English (intermediate, B1, actively improving), Portuguese (basic).}
 \end{itemize}
 
 % ============================================================
