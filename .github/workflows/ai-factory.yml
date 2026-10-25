@@ -1,0 +1,160 @@
+# AI Software Factory — se dispara al poner la etiqueta `ai-factory` en un issue.
+#
+# Configuración (Settings → Secrets and variables → Actions):
+#   Secrets
+#     ANTHROPIC_API_KEY           (obligatorio) clave de la API de Claude (Spec Writer y Builder)
+#     NVIDIA_API_KEY              (obligatorio con la config por defecto) revisores y approver
+#     OPENAI_API_KEY, GEMINI_API_KEY, ...  (opcionales) claves de otros proveedores declarados en
+#                                 [providers] de factory.toml. Añade cada una también al paso
+#                                 "Ejecutar la factoría" de abajo (con el mismo nombre que su api_key_env).
+#     AI_FACTORY_GH_TOKEN         (opcional) PAT o token de GitHub App con contents/pull-requests/issues: write.
+#                                 Úsalo si quieres que las PRs de la factoría disparen tu CI
+#                                 (las creadas con GITHUB_TOKEN no lo hacen).
+#     AI_FACTORY_CHECKOUT_TOKEN   (opcional) token con lectura del repo de la factoría si es privado.
+#   Variables
+#     AI_FACTORY_REPO             (obligatorio) repo con el código de la factoría, p. ej. "mi-org/ai_software_factory"
+#     AI_FACTORY_REF              (opcional) rama o tag de la factoría; por defecto "main"
+#
+# Settings → Actions → General → Workflow permissions: activa
+# "Allow GitHub Actions to create and approve pull requests".
+
+name: AI Factory
+
+on:
+  issues:
+    types: [labeled]
+
+permissions:
+  contents: write
+  pull-requests: write
+  issues: write
+
+concurrency:
+  group: ai-factory-issue-${{ github.event.issue.number }}
+  cancel-in-progress: false
+
+jobs:
+  factory:
+    if: github.event.label.name == 'ai-factory' && github.event.issue.state == 'open'
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    env:
+      ISSUE_NUMBER: ${{ github.event.issue.number }}
+      SENDER: ${{ github.event.sender.login }}
+      GH_TOKEN: ${{ secrets.AI_FACTORY_GH_TOKEN || github.token }}
+
+    steps:
+      # El cuerpo del issue llega al prompt de los agentes: sólo quien tenga permiso
+      # de escritura en el repo puede lanzar la factoría.
+      - name: Verificar permisos de quien puso la etiqueta
+        run: |
+          perm=$(gh api "repos/$GITHUB_REPOSITORY/collaborators/$SENDER/permission" --jq .permission)
+          echo "Permiso de $SENDER: $perm"
+          case "$perm" in
+            admin|maintain|write) ;;
+            *) echo "::error::$SENDER no tiene permiso de escritura; no se ejecuta la factoría."; exit 1 ;;
+          esac
+
+      - name: Checkout del proyecto
+        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+        with:
+          path: project
+          fetch-depth: 0
+          # El token no queda en .git/config, al alcance del Builder.
+          persist-credentials: false
+
+      - name: Checkout de la factoría
+        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+        with:
+          repository: ${{ vars.AI_FACTORY_REPO }}
+          ref: ${{ vars.AI_FACTORY_REF || 'main' }}
+          token: ${{ secrets.AI_FACTORY_CHECKOUT_TOKEN || github.token }}
+          path: engine
+          persist-credentials: false
+
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5
+        with:
+          python-version: "3.12"
+
+      - name: Instalar la factoría
+        run: pip install -r engine/requirements.txt
+
+      # Lo mismo que instala la CI de este proyecto (.github/workflows/ci.yml).
+      - name: Instalar dependencias del proyecto
+        run: python -m pip install pyyaml openpyxl==3.1.5
+
+      - uses: oven-sh/setup-bun@0c5077e51419868618aeaa5fe8019c62421857d6 # v2
+
+      - name: Configurar git
+        working-directory: project
+        run: |
+          git config user.name "ai-factory[bot]"
+          git config user.email "ai-factory@users.noreply.github.com"
+          # git push usa gh como helper de credenciales, que lee GH_TOKEN del entorno.
+          # La factoría quita GH_TOKEN del entorno de los comandos que ejecuta el Builder.
+          gh auth setup-git
+
+      - name: Avisar en el issue
+        run: |
+          gh issue comment "$ISSUE_NUMBER" --repo "$GITHUB_REPOSITORY" --body \
+            "🏭 La AI Factory empezó a trabajar en este issue. Progreso: $GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID"
+
+      - name: Ejecutar la factoría
+        id: factory
+        working-directory: project
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          NVIDIA_API_KEY: ${{ secrets.NVIDIA_API_KEY }}
+          # Otros proveedores (los secrets vacíos se ignoran). Añade aquí los que declares:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        run: |
+          set +e
+          python ../engine/main.py run --repo . --issue "$ISSUE_NUMBER" --push \
+            --output-json "$RUNNER_TEMP/result.json"
+          echo "exit_code=$?" >> "$GITHUB_OUTPUT"
+
+      - name: Subir auditoría
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: ai-factory-issue-${{ github.event.issue.number }}-${{ github.run_id }}
+          path: project/.ai_factory/runs/
+          if-no-files-found: ignore
+          retention-days: 30
+
+      - name: Comentar el resultado en el issue
+        if: always()
+        run: |
+          python - <<'EOF' > "$RUNNER_TEMP/comment.md"
+          import json, os
+          path = os.path.join(os.environ["RUNNER_TEMP"], "result.json")
+          run_url = f"{os.environ['GITHUB_SERVER_URL']}/{os.environ['GITHUB_REPOSITORY']}/actions/runs/{os.environ['GITHUB_RUN_ID']}"
+          try:
+              r = json.load(open(path))
+          except (OSError, ValueError):
+              print(f"⚠️ La AI Factory terminó sin resultado (error del workflow). Logs: {run_url}")
+              raise SystemExit
+          icons = {"AUTO_MERGED": "🟢", "MERGED_LOCAL": "🟢", "PR_CREATED": "🔍", "AWAITING_HUMAN": "🔍"}
+          print(f"{icons.get(r['status'], '⚠️')} **AI Factory: {r['status']}**\n")
+          print(r.get("detail", ""))
+          if r.get("branch"):
+              print(f"\n- Rama: `{r['branch']}`")
+          if r.get("iterations"):
+              print(f"- Iteraciones Builder → Revisores: {r['iterations']}")
+          usage = r.get("usage") or {}
+          if usage:
+              print("- Tokens: " + ", ".join(f"{m} in={u['input']:,} out={u['output']:,}" for m, u in usage.items()))
+          print(f"\nAuditoría completa (spec, diffs, revisiones) en los artefactos del run: {run_url}")
+          EOF
+          gh issue comment "$ISSUE_NUMBER" --repo "$GITHUB_REPOSITORY" --body-file "$RUNNER_TEMP/comment.md"
+          # Quita la etiqueta para poder relanzar la factoría volviendo a ponerla.
+          gh issue edit "$ISSUE_NUMBER" --repo "$GITHUB_REPOSITORY" --remove-label ai-factory || true
+
+      - name: Estado final
+        if: always()
+        run: |
+          if [ "${{ steps.factory.outputs.exit_code }}" != "0" ]; then
+            echo "::error::La factoría no completó la tarea (ver comentario en el issue y artefactos)."
+            exit 1
+          fi
