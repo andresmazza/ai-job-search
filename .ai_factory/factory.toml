@@ -1,0 +1,135 @@
+# Configuración de la AI Software Factory para este repositorio.
+
+[project]
+base_branch = "master"
+# Lo mismo que la CI (.github/workflows/ci.yml): lint de skills, guardas de seguridad,
+# tests Python y, en cada CLI de portal, typecheck + tests de Bun.
+# Requiere python3 con pyyaml y openpyxl, y bun en el PATH.
+test_command = 'python3 tools/lint_skills.py && python3 tools/security_guards.py && python3 -m unittest discover -s tests -t . && for d in .agents/skills/*/cli; do (cd "$d" && bun install --silent && bun run typecheck && bun test) || exit 1; done'
+lint_command = ""             # el lint ya va dentro de test_command
+command_timeout = 900         # segundos por comando
+
+# ---------------------------------------------------------------------------
+# PROVEEDORES DE IA Y API KEYS
+# ---------------------------------------------------------------------------
+# Aquí NUNCA va la clave en sí (este archivo se sube a git). Sólo el NOMBRE de la
+# variable de entorno que la contiene:
+#   - local: en el archivo .env de la factoría  (OPENAI_API_KEY=sk-...)
+#   - CI:    en Settings → Secrets del repo, y añadida al workflow
+# Comprueba la configuración con:  python main.py providers --repo . --ping
+#
+# Tipos:
+#   "anthropic" → API de Claude. Obligatorio para spec_writer y builder.
+#   "openai"    → OpenAI o cualquier API compatible (con base_url). Sólo para revisores y approver.
+#
+# Uso en [models]: "<nombre_proveedor>:<modelo>". Sin prefijo = proveedor "anthropic".
+
+[providers.anthropic]
+type = "anthropic"
+api_key_env = "ANTHROPIC_API_KEY"
+# base_url = ""                       # opcional: proxy o gateway propio
+
+# NVIDIA (build.nvidia.com) — API compatible con OpenAI. Activo por defecto para
+# revisores y approver. Clave en NVIDIA_API_KEY (empieza por "nvapi-").
+[providers.nvidia]
+type = "openai"
+api_key_env = "NVIDIA_API_KEY"
+base_url = "https://integrate.api.nvidia.com/v1"
+json_mode = "prompt"                  # schema en las instrucciones + validación y reintento
+supports_images = false               # nemotron-3-super sólo acepta texto
+
+# Descomenta los que vayas a usar:
+
+# [providers.openai]
+# type = "openai"
+# api_key_env = "OPENAI_API_KEY"
+# reasoning_effort = "medium"         # opcional, sólo modelos de razonamiento
+
+# [providers.gemini]
+# type = "openai"                     # Gemini vía su endpoint compatible con OpenAI
+# api_key_env = "GEMINI_API_KEY"
+# base_url = "https://generativelanguage.googleapis.com/v1beta/openai/"
+
+# [providers.deepseek]
+# type = "openai"
+# api_key_env = "DEEPSEEK_API_KEY"
+# base_url = "https://api.deepseek.com"
+# json_mode = "object"                # si el proveedor no admite JSON Schema estricto
+
+# [providers.mistral]
+# type = "openai"
+# api_key_env = "MISTRAL_API_KEY"
+# base_url = "https://api.mistral.ai/v1"
+
+# [providers.openrouter]
+# type = "openai"
+# api_key_env = "OPENROUTER_API_KEY"
+# base_url = "https://openrouter.ai/api/v1"
+
+# [providers.ollama]                  # modelos locales
+# type = "openai"
+# api_key_env = "OLLAMA_API_KEY"      # Ollama no la valida, pero debe tener algún valor
+# base_url = "http://localhost:11434/v1"
+# json_mode = "object"
+
+# Varias cuentas del mismo proveedor (p. ej. facturar revisiones aparte):
+# [providers.anthropic_reviews]
+# type = "anthropic"
+# api_key_env = "ANTHROPIC_API_KEY_REVIEWS"
+
+[models]
+# Usa el ID de modelo exacto que publica cada proveedor en su documentación.
+spec_writer = "claude-opus-5-5"
+builder = "claude-opus-5-5"
+approver = "nvidia:nvidia/nemotron-3-super-120b-a12b"
+# Revisores y approver en NVIDIA: un proveedor distinto al del Builder evita el sesgo de
+# auto-evaluación. Para volver a Claude: "claude-sonnet-5-5" (revisores) / "claude-opus-5-5" (approver).
+# Catálogo de modelos NVIDIA: https://build.nvidia.com/models
+reviewer_security = "nvidia:nvidia/nemotron-3-super-120b-a12b"
+reviewer_code_quality = "nvidia:nvidia/nemotron-3-super-120b-a12b"
+reviewer_ux = "nvidia:nvidia/nemotron-3-super-120b-a12b"
+reviewer_ui = "nvidia:nvidia/nemotron-3-super-120b-a12b"
+
+[effort]                      # low | medium | high | xhigh | max
+spec_writer = "high"
+builder = "high"
+reviewers = "medium"
+approver = "medium"
+
+[pipeline]
+max_iterations = 3            # ciclos Builder → Revisores → Approver antes de rendirse
+builder_max_turns = 80
+spec_max_turns = 30
+require_red_phase = true      # exige ver los tests fallar antes de pasar (TDD)
+use_fallbacks = true          # reintento automático en otro modelo si un clasificador rechaza
+
+[reviewers]
+enabled = ["security", "code_quality", "ux", "ui"]
+# UX y UI sólo se lanzan si el diff toca alguno de estos archivos:
+# Este proyecto no tiene frontend: UX y UI no se lanzan.
+frontend_globs = []
+# Comando opcional que genera capturas PNG para el revisor de UI (p. ej. un script Playwright):
+ui_screenshot_command = ""
+ui_screenshot_dir = ".ai_factory/screenshots"
+
+[risk]
+# Cualquier cambio que toque estas rutas va por PR con revisión humana (glob, '*' cruza carpetas).
+critical_paths = [
+  # Permisos y superficie de seguridad
+  ".claude/settings.json", ".claude/agents/*", ".gitignore", "SECURITY.md",
+  "tools/security_guards.py", "tools/posting_guard.py", "tools/robots_check.py",
+  ".github/*",
+  # Perfil y datos personales (repo público)
+  "CLAUDE.md", "AGENTS.md", ".claude/skills/job-application-assistant/01-*",
+  ".claude/skills/job-application-assistant/02-*", "cv/*", "cover_letters/*",
+  # Dependencias de los CLIs
+  "*package.json", "*tsconfig.json",
+  "*.env*",
+]
+max_lines_low_risk = 200
+max_files_low_risk = 10
+
+[delivery]
+auto_merge = true             # bajo riesgo: merge --no-ff a la rama base
+auto_push = false             # además hacer push de la rama base tras el merge
+remote = "origin"

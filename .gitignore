@@ -119,3 +119,7 @@ company_research/*.json
 
 # Brainstorm mockups (superpowers visual companion) - never ship
 .superpowers/
+
+# AI Software Factory
+.ai_factory/runs/
+.ai_factory/screenshots/
